@@ -1,12 +1,11 @@
 $.ajax({
     type: 'GET',
     url: './picture.json',
-    dataType: 'json',
-    data: {name: 'picture'},
+    dataType: 'jsonp',
+    jsonCallback: 'picture',
     success: function(data) {
-        var dataArray = data;
-        $.each(dataArray, function(i){
-          $document.write('<img src =' + '"' + dataArray[i].picture + '"' + '/>');  
+        data.forEach(function(i){
+            $document.write('<img src =' + '"' + i.picture + '"' + '>');  
         })
     },
     error:function() {

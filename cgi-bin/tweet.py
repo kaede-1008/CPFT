@@ -6,7 +6,7 @@ import Twitterkey
 
 class Tweet:
 
-    __num = 100
+    __num = 500
     __count = 0
     __status_media = {}
 
@@ -16,9 +16,8 @@ class Tweet:
     def get_timeline(self, api):
         judge = Judge()
         try:
-            for tweet in api.user_timeline(id = Twitterkey.id, count = self.__num):
-                is_media = False
-                is_media = judge.my_timeline_multi(tweet)
+            for tweet in api.home_timeline(count = self.__num):
+            #for tweet in api.user_timeline(id = Twitterkey.id, count = self.__num):
                 if judge.my_timeline_multi(tweet):
                     try:
                         self.__status_media[self.__count] = tweet

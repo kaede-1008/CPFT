@@ -2,6 +2,7 @@
 import tweepy as tp
 import json
 import collections as cl
+import os
 from get_media import GetMedia
 
 def main():
@@ -9,7 +10,13 @@ def main():
     picture = list()
     get_media = GetMedia()
     picture = get_media.picture()
-    fname = 'C:\\Users\\Owner\\Desktop\\大学\\Python\\collect_picture\\cgi-bin\\picture.json'
+    name = os.path.dirname(os.path.abspath(__name__))
+
+    joined_path = os.path.join(name, '../picture.json')
+    
+    fname = os.path.normpath(joined_path)
+    
+    print(fname)
 
     dic = cl.OrderedDict()
 
@@ -30,15 +37,15 @@ def main():
         <html>
         <head><title>picture</title></head>
         <body>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>      
-        <script type="test/javascript" src="picture.js"></script>
         """
     )
 
     for media in picture:
-        print('<img src=' + '"' + media + '"' + 'width = "25%" height = "25%"/>')
+        print('<img src=' + '"' + media + '"' + 'width = "10%" height = "10%">')
     print("""
         </body>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>      
+        <script type="test/javascript" src="picture.js"></script>
         </html>
     """)
 

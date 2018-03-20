@@ -8,20 +8,26 @@ class Judge:
 
     def my_timeline_single(self, tweet):
         if hasattr(tweet, "entities"):
-            self.is_media = self.is_video(tweet.entities)
+            self.is_media = self.is_picture(tweet.entities)
         
         return self.is_media
 
     def my_timeline_multi(self, tweet):
         if hasattr(tweet, "extended_entities"):
-            self.is_media = self.is_video(tweet.extended_entities)
+            self.is_media = self.is_picture(tweet.extended_entities)
 
         return self.is_media
 
-    def is_video(self, tweet):
+    def is_picture(self, tweet):
         if 'media' in tweet:
             return True
         
+        return False
+
+    def is_video(self, tweet):
+        if 'video' in tweet:
+            return True
+
         return False
 
     def is_status_media(self, status_media, status):
