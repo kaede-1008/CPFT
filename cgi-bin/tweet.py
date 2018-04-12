@@ -3,10 +3,12 @@ import tweepy as tp
 from collect import Collect
 from judge import Judge
 import Twitterkey
+from tqdm import tqdm
+import time
 
 class Tweet:
 
-    __num = 500
+    __num = 100
     __count = 0
     __status_media = {}
 
@@ -31,7 +33,8 @@ class Tweet:
                         self.__count += 1
                     except:
                         pass
-        except:
-            pass
+        except tp.error.TweepError:
+            for _ in tqdm(range(15 * 60)):
+                time.sleep(1)
 
         return self.__status_media
