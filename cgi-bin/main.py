@@ -6,14 +6,17 @@ import os
 import sys
 import io
 from get_media import GetMedia
+import cgi
+
 
 def main():
-    
+    form = cgi.FieldStorage()
+    t_name = form.getvalue('text')
     picture = list()
     username = list()
     get_media = GetMedia()
-    picture = get_media.picture()
-    username = get_media.username()
+    picture = get_media.picture(t_name)
+    username = get_media.username(t_name)
     name = os.path.dirname(os.path.abspath(__name__))
 
     joined_path = os.path.join(name, '../picture.json')
@@ -43,12 +46,10 @@ def main():
         <body>
         """
     )
-
     
-    for (media, name) in zip(picture, username):
+    for media in picture:
         try:
             print('<img src=' + '"' + media + '"' + 'width = "20%" height = "20%" border = "1">')
-            print('<p>' + name + '</p>')
         except:
             pass
     

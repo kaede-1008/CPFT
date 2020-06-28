@@ -5,20 +5,23 @@ from judge import Judge
 import Twitterkey
 from tqdm import tqdm
 import time
+# from index import Id
+
 
 class Tweet:
 
-    __num = 100
+    __num = 2500
     __count = 0
     __status_media = {}
 
     def __init__(self):
         pass
 
-    def get_timeline(self, api):
+    def get_timeline(self, api, t_name):
         judge = Judge()
         try:
-            for tweet in api.home_timeline(count = self.__num):
+            
+            for tweet in api.user_timeline(id = t_name,count = self.__num):
             #for tweet in api.user_timeline(id = Twitterkey.id, count = self.__num):
                 if judge.my_timeline_multi(tweet):
                     try:

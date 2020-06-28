@@ -5,7 +5,7 @@ from collect import Collect
 
 class GetMedia:
     
-    def picture(self):
+    def picture(self, t_name):
         picture = list()
         tweet = Tweet()
         status_media = {}
@@ -13,7 +13,7 @@ class GetMedia:
         collect = Collect()
 
         api = collect.api()
-        status_media = tweet.get_timeline(api)
+        status_media = tweet.get_timeline(api, t_name)
 
         for media in status_media:
             try:
@@ -26,7 +26,7 @@ class GetMedia:
 
         return picture
 
-    def username(self):
+    def username(self, t_name):
         username = list()
         tweet = Tweet()
         status_media = {}
@@ -34,7 +34,7 @@ class GetMedia:
         collect = Collect()
 
         api = collect.api()
-        status_media = tweet.get_timeline(api)
+        status_media = tweet.get_timeline(api, t_name)
 
         for media in status_media:
             try:
